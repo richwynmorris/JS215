@@ -17,3 +17,17 @@ octalToDecimal('130');         // 88
 octalToDecimal('17');          // 15
 octalToDecimal('2047');        // 1063
 octalToDecimal('011');         // 9
+
+
+// Better option:
+
+function octalToDecimal(numberString) {
+  let octalNums = numberString.split('')
+                              .reverse()
+                              .map ((number, index) => {
+                                return Math.pow(8, index) * number
+                              })
+
+  console.log(octalNums.reduce((accum, element) => accum + element))
+  
+}
