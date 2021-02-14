@@ -43,8 +43,13 @@ function generateClassRecordSummary(scores) {
                           return getGrades(scores[studentKey])
                         })
   
-  getExamAverage(keys, scores)
+  let examAverages = getExamAverages(keys, scores)
   
+  let minimumGrades = getMinimumGrades(keys, scores)
+  
+  let results = formatResults(grades, examAverages, minimumGrades)
+  
+  return results
 }
 
 function computeExamScore(obj) {
@@ -75,13 +80,37 @@ function getGrades(score) {
   return result
 }
 
-function getExamAverage(studentKeys, studentScores) {
-  let index = 0
-  let total = 0
+function getExamAverages(studentKeys, studentScores) {
+  const NUM_OF_EXAMS = 5
+  let averages = []
   
-  studentKeys.forEach(student => {
-    studentScores[student].scores.exams[index]   
-  })  
+  for(let index = 0; index < studentKeys.length - 1; index += 1) {
+    let result = 0
+    studentKeys.forEach(student => {
+      result += studentScores[student].scores.exams[index] 
+    })
+    averages.push(result / NUM_OF_EXAMS)
+  }
+  
+  return averages
+}
+
+
+function getMinimumGrades(studentKeys, studentScores) {
+  let minimumGrades = []
+  
+  for(let index = 0; index < studentKeys.length - 1; index += 1) {
+    let minGrade = 100
+    studentKeys.forEach(student => {
+      let grade = studentScores[student].scores.exams[index]
+      if (grade < minGrade) {
+        minGrade = grade
+      }
+    })
+    minimumGrades.push(minGrade)
+  }
+  
+  return minimumGrades
 }
 
 function lookUpLetter(num) {
@@ -105,11 +134,32 @@ function lookUpLetter(num) {
       return num + ' (F)';
   }
 }
+
+
+function formatExams (averages, minimums) {
+  const MAXIMUM_GRADE = 100
+  let result = averages.map((num, index) => {
+         return { average: num,
+                  minimum: minimums[index],
+                  maximum: MAXIMUM_GRADE,
+                }
+               })
+  return result
+}
+
+function formatResults(grades, averages, minimums) {
+  let exams = formatExams(averages, minimums) 
+  let result = {studentGrades: grades, 
+                exams: exams 
+                }
+  
+  return result
+}
   
 
 
 
-generateClassRecordSummary(studentScores);
+console.log(generateClassRecordSummary(studentScores));
 
 // // returns:
 // {
