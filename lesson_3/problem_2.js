@@ -35,6 +35,10 @@
 // otherwise true
 
 function validLuhnNum(stringNum) {
+  if(stringNum === '') {
+    return false
+  }
+
   let cleanNums = stringNum.replace(/\D/g, '')
   
   let reverseNums = cleanNums.split('').reverse()
