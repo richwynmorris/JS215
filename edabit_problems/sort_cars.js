@@ -83,7 +83,7 @@ console.log(validCard([
   { color: "red", number: 1, shade: "empty", shape: "squiggle" }, 
   { color: "red", number: 2, shade: "empty", shape: "diamond" },  
   { color: "red", number: 3, shade: "empty", shape: "oval" }
-])) // => false
+])) // => true
 
 
 // checks that there are 3 cards
