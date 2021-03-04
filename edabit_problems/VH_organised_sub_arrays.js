@@ -49,20 +49,17 @@ function subArrays(array) {
   console.log(subArrayCollection)
 }
 
-
 subArrays([1, 2, 3, 4, 5]) // => [[1], [2], [3], [4], [5]]
 subArrays(['1', '2', '3', '4', '5']) // => [['1'], ['2'], ['3'], ['4'], ['5']]
 subArrays([1, 2, 3, 4, 2]) // => [[1], [2,2], [3], [4]]
 subArrays([3, 4, 5, 1, 1]) // => [[3], [4], [5], [1, 1]]
 subArrays([3, 4, 5, 1, 1, '1', '1']) // => [[3], [4], [5], [1, 1], ['1', '1']]
 
-
 subArrays([1, 'a', 2, 'b']); // [[1], ['a'], [2], ['b']]
 subArrays([1, 'a', 2, 'a']); // [[1], ['a', 'a'], [2]]
 subArrays([1, 1, 2, 'b']); // [[1, 1], [2], ['b']]
 subArrays([1, 'a', 'b', 'b']); // [[1], ['a'], ['b', 'b']]
 subArrays(([NaN, NaN, Infinity, '']))
-
 
 subArrays(42); // 'Invalid input.'
 subArrays('foo'); // 'Invalid input.'
@@ -71,10 +68,3 @@ subArrays({}); // 'Invalid input.'
 subArrays(undefined); // 'Invalid input.'
 subArrays(null); // 'Invalid input.'
 subArrays(); // 'Invalid input.'
-
-
-
-
-
-
-
